@@ -21,34 +21,34 @@ def setMaterial(ob, mat):
     me = ob.data
     me.materials.append(mat)
 
-def makecubes( ncube, cube_size, positions_x, positions_y, configurations, make_single_cube_active_cube=False ) :
+def makecubes( ncube, cube_size, positions_x, positions_y, configurations, make_single_cube_active_cube=False ):
     black = makeMaterial('Black', (0,0,0),(1,1,1),1)
     white = makeMaterial('White', (1,1,1),(1,1,1),1)
     add_cube = bpy.ops.mesh.primitive_cube_add
     offset = ncube*cube_size/2.-cube_size/2.
     n = 0
     if make_single_cube_active_cube:
-        for l in range(len(positions_x)) :
-            for i in range(ncube) :
-                for j in range(ncube) :
-                    for k in range(ncube) :
+        for l in range(len(positions_x)):
+            for i in range(ncube):
+                for j in range(ncube):
+                    for k in range(ncube):
+                        add_cube(location=(i*cube_size+positions_x[l]-offset,j*cube_size+positions_y[l]-offset,k*cube_size-offset))
+                        bpy.context.object.scale = (cube_size/2,cube_size/2,cube_size/2)
                         #if (i == 2 and j == 0  and k == 2) :
                         #if (i == 1 and j == 0  and k == 2) :
                         #if (i == 2 and j == 1  and k == 2) :
-                        if (i == 2 and j == 0  and k == 1) :
-                            add_cube(location=(i*cube_size+positions_x[l]-offset,j*cube_size+positions_y[l]-offset,k*cube_size-offset))
-                            bpy.context.object.scale = (cube_size/2,cube_size/2,cube_size/2)
+                        if (i == 2 and j == 0  and k == 1):
                             setMaterial(bpy.context.object, makeMaterial('Color', (configurations[n],configurations[n],configurations[n]),(1,1,1),1,))
-                        else :
-                            add_cube(location=(i*cube_size+positions_x[l]-offset,j*cube_size+positions_y[l]-offset,k*cube_size-offset))
-                            bpy.context.object.scale = (cube_size/2,cube_size/2,cube_size/2)
+                        else:
                             setMaterial(bpy.context.object, makeMaterial('Color', (configurations[n],configurations[n],configurations[n]),(1,1,1),1,transparent=True, t_alpha = 0.15))
                         n += 1
-    else :    
-        for l in range(len(positions_x)) :
-            for i in range(ncube) :
-                for j in range(ncube) :
-                    for k in range(ncube) :
+    else:
+        for l in range(len(positions_x)):
+            for i in range(ncube):
+                for j in range(ncube):
+                    for k in range(ncube):
+                        add_cube(location=(i*cube_size+positions_x[l]-offset,j*cube_size+positions_y[l]-offset,k*cube_size-offset))
+                        bpy.context.object.scale = (cube_size/2,cube_size/2,cube_size/2)
                         #if j == 0 or k == (ncube-1) or (i==(ncube-1) and j>0) or (i==(ncube-1) and k>0):
                         #if (i == 3 and j == 3 and k == 3) or (i == 3 and j == 2 and k == 3) or (i == 2 and j == 3 and k == 3) or (i == 2 and j == 2  and k == 3) or \
                         #   (i == 3 and j == 3 and k == 2) or (i == 3 and j == 2 and k == 2) or (i == 2 and j == 3 and k == 2) or (i == 2 and j == 2  and k == 2) :
@@ -59,13 +59,9 @@ def makecubes( ncube, cube_size, positions_x, positions_y, configurations, make_
                         #if (i == 3 and j == 2 and k == 3) or (i == 3 and j == 1 and k == 3) or (i == 2 and j == 2 and k == 3) or (i == 2 and j == 1  and k == 3) or \
                         #   (i == 3 and j == 2 and k == 2) or (i == 3 and j == 1 and k == 2) or (i == 2 and j == 2 and k == 2) or (i == 2 and j == 1  and k == 2) :
                         if (i == 3 and j == 0 and k == 1) or (i == 3 and j == 1 and k == 1) or (i == 2 and j == 0 and k == 1) or (i == 2 and j == 1  and k == 1) or \
-                           (i == 3 and j == 0 and k == 2) or (i == 3 and j == 1 and k == 2) or (i == 2 and j == 0 and k == 2) or (i == 2 and j == 1  and k == 2) :
-                            add_cube(location=(i*cube_size+positions_x[l]-offset,j*cube_size+positions_y[l]-offset,k*cube_size-offset))
-                            bpy.context.object.scale = (cube_size/2,cube_size/2,cube_size/2)
+                           (i == 3 and j == 0 and k == 2) or (i == 3 and j == 1 and k == 2) or (i == 2 and j == 0 and k == 2) or (i == 2 and j == 1  and k == 2):
                             setMaterial(bpy.context.object, makeMaterial('Color', (configurations[n],configurations[n],configurations[n]),(1,1,1),1,))
-                        else :
-                            add_cube(location=(i*cube_size+positions_x[l]-offset,j*cube_size+positions_y[l]-offset,k*cube_size-offset))
-                            bpy.context.object.scale = (cube_size/2,cube_size/2,cube_size/2)
+                        else:
                             setMaterial(bpy.context.object, makeMaterial('Color', (configurations[n],configurations[n],configurations[n]),(1,1,1),1,transparent=True, t_alpha = 0.15))
                         n += 1
 

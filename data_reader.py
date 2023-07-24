@@ -11,7 +11,7 @@ class insert_file_info :
     
     def __init__(self, full_file_path, filenumber, batch_size = 50, 
         use_random_seed = False, include_validation_data = False, 
-        load_test_data_only = False) :
+        load_test_data_only = False):
         """ full_file_path : full file path of the shuffled data
             filenumber     : An array of file number """
         self.filename         = full_file_path.rsplit('\\', 1)[-1]
@@ -27,7 +27,7 @@ class insert_file_info :
         self.load_test_data_only = load_test_data_only
         if self.load_test_data_only :
             self.include_validation_data = False
-        self.delimiter        = [1 for i in xrange(self.ncols)]
+        self.delimiter = [1 for _ in xrange(self.ncols)]
 
     class DataSet(object) :
         file_info = None

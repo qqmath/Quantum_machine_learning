@@ -38,7 +38,7 @@ sess = tf.InteractiveSession()
 # bits among which only one is (1), the opposite is called one-cold) 2
 # -dimensional vector vector indicating which digit class the 
 # corresponding HSF data belongs to.
-x = tf.placeholder(tf.float32, [None, n_spin*n_spin*n_spin * n_time_dimension])
+x = tf.placeholder(tf.float32, [None, n_spin**2 * n_spin * n_time_dimension])
 y_ = tf.placeholder(tf.float32, [None, n_output_neuron])
 
 # To prevent 0 gradients and break symmetry, one should genereally
